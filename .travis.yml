@@ -1,0 +1,19 @@
+language: node_js
+services:
+  - mongodb
+node_js:
+  - 5.1
+before_install:
+before_script:
+  - npm install -g grunt-cli
+  - npm install -d
+branches:
+  only:
+    - master
+script:
+  - npm test
+after_success:
+  - codeclimate < ./coverage/lcov.info
+addons:
+    code_climate:
+        repo_token: d3fe64ae15ccda559def8197acbace9b1da555d1e7f391c36f30028f4d5bc6ac
