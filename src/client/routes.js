@@ -6,6 +6,10 @@ import Types from './components/types/types_index';
 import TypesShow from './components/types/types_show';
 import TypesNew from './components/types/types_new';
 import TypesEdit from './components/types/types_edit';
+import Pokedexes from './components/pokedexes/pokedexes_index';
+import PokedexesShow from './components/pokedexes/pokedexes_show';
+import PokedexesNew from './components/pokedexes/pokedexes_new';
+import PokedexesEdit from './components/pokedexes/pokedexes_edit';
 
 export default (
   <Route path='/' component={App}>
@@ -14,5 +18,9 @@ export default (
     <Route path='types/new' component={TypesNew} />
     <Route path='types/edit/:id' component={TypesEdit} />
     <Route path='types/:id' component={TypesShow} />
+    <Route path='pokedexes' component={Pokedexes} />
+    <Route path='pokedexes/new' component={PokedexesNew} />
+    <Route path='pokedexes/edit/:id' component={PokedexesEdit} />
+    <Route path='pokedexes/:id' component={PokedexesShow} />
   </Route>
 );
