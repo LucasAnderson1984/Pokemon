@@ -6,14 +6,15 @@ module.exports = function(sequelize, DataTypes) {
     type1_id: DataTypes.INTEGER,
     type2_id: DataTypes.INTEGER,
     status: DataTypes.STRING,
-    create_by: DataTypes.STRING,
+    created_by: DataTypes.STRING,
     created_at: DataTypes.DATE,
     updated_by: DataTypes.STRING,
     updated_at: DataTypes.DATE
   }, {
     classMethods: {
       associate: function(models) {
-        Pokedex.belongsTo(models.Type)
+        Pokedex.belongsTo(models.Type, { foreignKey: 'type1_id', as: 'type1' }),
+        Pokedex.belongsTo(models.Type, { foreignKey: 'type2_id', as: 'type2' })
       }
     }
   });

@@ -1,12 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { createPokedex } from '../../actions/pokedexes';
+import { fetchTypes } from '../../actions/types';
 import { Link } from 'react-router';
 
 class PokedexesNew extends Component {
-  static contextPokedexes = {
+  static contextTypes = {
     router: PropTypes.object
   };
+
+  componentWillMount() {
+    this.props.fetchTypes();
+  }
 
   onSubmit(props) {
     this.props.createPokedex(props)
@@ -16,7 +21,16 @@ class PokedexesNew extends Component {
   }
 
   render() {
-    const { fields: { reference, pokedex }, handleSubmit } = this.props;
+    const {
+      fields: {
+        national_id,
+        name,
+        type1_id,
+        type2_id,
+        status
+      },
+      handleSubmit
+    } = this.props;
 
     return (
       <div>
@@ -37,7 +51,7 @@ class PokedexesNew extends Component {
               ${ national_id.touched &&
                  national_id.invalid ? 'has-error' : '' }`}>
             <input
-              pokedex='text'
+              type='text'
               className='form-control'
               placeholder='National ID'
               {...national_id} />
@@ -51,7 +65,7 @@ class PokedexesNew extends Component {
               ${ name.touched &&
                  name.invalid ? 'has-error' : '' }`}>
             <input
-              pokedex='text'
+              type='text'
               className='form-control'
               placeholder='Name'
               {...name} />
@@ -65,9 +79,9 @@ class PokedexesNew extends Component {
               ${ type1_id.touched &&
                  type1_id.invalid ? 'has-error' : '' }`}>
             <input
-              pokedex='text'
+              type='text'
               className='form-control'
-              placeholder='Type'
+              placeholder='Type 1'
               {...type1_id} />
             <div className='help-block'>
               { type1_id.touched ? type1_id.error : '' }
@@ -76,10 +90,24 @@ class PokedexesNew extends Component {
           <div
             className={
               `form-group
+              ${ type2_id.touched &&
+                 type2_id.invalid ? 'has-error' : '' }`}>
+            <input
+              type='text'
+              className='form-control'
+              placeholder='Type 2'
+              {...type2_id} />
+            <div className='help-block'>
+              { type2_id.touched ? type2_id.error : '' }
+            </div>
+          </div>
+          <div
+            className={
+              `form-group
               ${ status.touched &&
                  status.invalid ? 'has-error' : '' }`}>
             <input
-              pokedex='text'
+              type='text'
               className='form-control'
               placeholder='Status'
               {...status} />
@@ -112,6 +140,10 @@ function validate(values) {
     errors.type1_id = 'Enter a type';
   }
 
+  if (!values.type2_id) {
+    errors.type2_id = 'Enter a type';
+  }
+
   if (!values.status) {
     errors.status = 'Enter a status';
   }
@@ -119,8 +151,12 @@ function validate(values) {
   return errors;
 }
 
+function mapStateToProps(state) {
+  return { types: state.types.all.map((a) => {return a.type}) };
+}
+
 export default reduxForm({
   form: 'PokedexesNewForm',
-  fields: ['reference', 'pokedex'],
+  fields: ['national_id', 'name', 'type1_id', 'type2_id', 'status'],
   validate
-}, null, { createPokedex })(PokedexesNew);
+}, mapStateToProps, { fetchTypes, createPokedex })(PokedexesNew);

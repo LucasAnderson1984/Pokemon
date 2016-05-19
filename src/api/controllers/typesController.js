@@ -1,6 +1,6 @@
 import { models } from '~/src/api/models';
 
-exports.index = function(req, res) {
+exports.index = function(req, res, next) {
   models.Type
     .findAll({ order: ['id'] })
     .then(function(types) { res.json(types); })
@@ -32,7 +32,7 @@ exports.create = function(req, res, next) {
     .catch(function(error) { next(error) });
 };
 
-exports.update = function(req, res) {
+exports.update = function(req, res, next) {
   const TypeParams = {
     reference: req.body.reference,
     type: req.body.type,
@@ -47,10 +47,9 @@ exports.update = function(req, res) {
     .catch(function(error) { next(error) });
 };
 
-exports.destroy = function(req, res) {
+exports.destroy = function(req, res, next) {
   models.Type
     .destroy({ where: { id: req.params.id } })
-    .then(function(type) { res.redirect('/types')
+    .then(function(type) { res.redirect('/types'); })
     .catch(function(error) { next(error) });
-  });
 };

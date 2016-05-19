@@ -47,7 +47,6 @@ export function updateType(id, props) {
 
 export function destroyType(id) {
   const request = axios.delete(`${url}/${id}`);
-  console.log(id);
 
   return {
     type: DESTROY_TYPE,

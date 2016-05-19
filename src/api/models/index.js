@@ -1,18 +1,23 @@
 import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
+import configs from '~/config/config.json';
 
+const env = process.env.NODE_ENV || 'development';
+const config = configs[env];
 const models = {};
-const sequelize = new Sequelize('pokedex', 'ash', 'pikachu', {
-  host: 'localhost',
-  dialect: 'postgres',
-
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  }
-});
+const sequelize = new Sequelize(
+  config.database,
+  config.username,
+  config.password,
+  Object.assign(config, {
+    define: {
+      underscored: true,
+      //paranoid: true,
+      timestamps: true
+    }
+  })
+);
 
 fs
   .readdirSync(__dirname)
@@ -29,8 +34,6 @@ Object.keys(models).forEach(function(modelName) {
     models[modelName].associate(models);
   }
 });
-
-sequelize.sync();
 
 export {
   sequelize,

@@ -47,7 +47,6 @@ export function updatePokedex(id, props) {
 
 export function destroyPokedex(id) {
   const request = axios.delete(`${url}/${id}`);
-  console.log(id);
 
   return {
     type: DESTROY_POKEDEX,

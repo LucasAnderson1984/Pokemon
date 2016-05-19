@@ -10,6 +10,11 @@ class PokedexesShow extends Component {
 
   render() {
     const edit = `/pokedexes/edit/${this.props.pokedex.id}`;
+    var type1 = (this.props.pokedex.type1 != null) ?
+                  this.props.pokedex.type1.type : '';
+
+    var type2 = (this.props.pokedex.type2 != null) ?
+                  this.props.pokedex.type2.type : '';
 
     return (
       <div>
@@ -46,15 +51,15 @@ class PokedexesShow extends Component {
             </p>
           </div>
           <div className='form-group'>
-            <label className='col-sm-3 control-label'>Type</label>
+            <label className='col-sm-3 control-label'>Type 1</label>
             <p className='col-sm-6 form-control-static'>
-              {this.props.pokedex.type1_id}
+              {type1}
             </p>
           </div>
           <div className='form-group'>
-            <label className='col-sm-3 control-label'>Type</label>
+            <label className='col-sm-3 control-label'>Type 2</label>
             <p className='col-sm-6 form-control-static'>
-              {this.props.pokedex.type2_id}
+              {type2}
             </p>
           </div>
           <div className='form-group'>

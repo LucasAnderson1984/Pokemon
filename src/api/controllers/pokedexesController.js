@@ -1,15 +1,41 @@
 import { models } from '~/src/api/models';
 
-exports.index = function(req, res) {
+exports.index = function(req, res, next) {
   models.Pokedex
-    .findAll({ order: ['id'] })
+    .findAll({
+      attributes: ['id',
+                   'uuid',
+                   'national_id',
+                   'name',
+                   'type1_id',
+                   'type2_id',
+                   'status',
+                   'created_by',
+                   'created_at',
+                   'updated_by',
+                   'updated_at'],
+       include: [{ all: true }],
+       order: ['id'] })
     .then(function(pokedexes) { res.json(pokedexes); })
     .catch(function(error) { next(error); });
 };
 
 exports.show = function(req, res, next) {
   models.Pokedex
-    .findById( req.params.id)
+    .findById( req.params.id, {
+      attributes: ['id',
+                   'uuid',
+                   'national_id',
+                   'name',
+                   'type1_id',
+                   'type2_id',
+                   'status',
+                   'created_by',
+                   'created_at',
+                   'updated_by',
+                   'updated_at'],
+     include: [{ all: true }]
+    })
     .then(function(pokedex) { res.json(pokedex); })
     .catch(function(error) { next(error); });
 };
@@ -35,7 +61,7 @@ exports.create = function(req, res, next) {
     .catch(function(error) { next(error) });
 };
 
-exports.update = function(req, res) {
+exports.update = function(req, res, next) {
   const PokedexParams = {
     national_id: req.body.national_id,
     name: req.body.name,
@@ -53,7 +79,7 @@ exports.update = function(req, res) {
     .catch(function(error) { next(error) });
 };
 
-exports.destroy = function(req, res) {
+exports.destroy = function(req, res, next) {
   models.Pokedex
     .destroy({ where: { id: req.params.id } })
     .then(function(pokedex) { res.redirect('/pokedexes')
