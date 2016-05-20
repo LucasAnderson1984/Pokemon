@@ -67,6 +67,7 @@ class PokedexList extends Component {
               <th>Type 1</th>
               <th>Type 2</th>
               <th>Status</th>
+              <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>

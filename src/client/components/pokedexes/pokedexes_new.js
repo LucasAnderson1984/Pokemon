@@ -78,28 +78,28 @@ class PokedexesNew extends Component {
               `form-group
               ${ type1_id.touched &&
                  type1_id.invalid ? 'has-error' : '' }`}>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Type 1'
-              {...type1_id} />
+             <select className='form-control' name='type1_id' {...type1_id}>
+                <option key='0' value='0'>-- Please pick a type --</option>
+                {
+                  this.props.types.map((type) => {
+                    return(<option key={type.id} value={type.id}>{type.type}</option>);
+                  })
+                }
+              </select>
             <div className='help-block'>
               { type1_id.touched ? type1_id.error : '' }
             </div>
           </div>
           <div
-            className={
-              `form-group
-              ${ type2_id.touched &&
-                 type2_id.invalid ? 'has-error' : '' }`}>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Type 2'
-              {...type2_id} />
-            <div className='help-block'>
-              { type2_id.touched ? type2_id.error : '' }
-            </div>
+            className='form-group'>
+             <select className='form-control' name='type2_id' {...type2_id}>
+                <option key='0' value='0'>-- Please pick a type --</option>
+                {
+                  this.props.types.map((type) => {
+                    return(<option key={type.id} value={type.id}>{type.type}</option>);
+                  })
+                }
+              </select>
           </div>
           <div
             className={
@@ -140,10 +140,6 @@ function validate(values) {
     errors.type1_id = 'Enter a type';
   }
 
-  if (!values.type2_id) {
-    errors.type2_id = 'Enter a type';
-  }
-
   if (!values.status) {
     errors.status = 'Enter a status';
   }
@@ -152,7 +148,7 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-  return { types: state.types.all.map((a) => {return a.type}) };
+  return { types: state.types.all };
 }
 
 export default reduxForm({

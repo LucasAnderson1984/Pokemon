@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
 import { showPokedex, updatePokedex } from '../../actions/pokedexes';
+import { fetchTypes } from '../../actions/types';
 import { Link } from 'react-router';
 
 class PokedexesEdit extends Component {
-  static contextPokedexes = {
+  static contextTypes = {
     router: PropTypes.object
   };
 
   componentWillMount() {
     this.props.showPokedex(this.props.params.id);
+    this.props.fetchTypes();
   }
 
   onSubmit(props) {
@@ -20,7 +22,16 @@ class PokedexesEdit extends Component {
   }
 
   render() {
-    const { fields: { reference, pokedex }, handleSubmit } = this.props;
+    const {
+      fields: {
+        national_id,
+        name,
+        type1_id,
+        type2_id,
+        status
+      },
+      handleSubmit
+    } = this.props;
 
     return (
       <div>
@@ -47,25 +58,49 @@ class PokedexesEdit extends Component {
             <input
               pokedex='text'
               className='form-control'
-              placeholder='Nome'
+              placeholder='Name'
               value={this.props.pokedex.name}
               {...name} />
           </div>
-          <div className='form-group'>
-            <input
-              pokedex='text'
-              className='form-control'
-              placeholder='Type'
-              value={this.props.pokedex.type1_id}
-              {...type1_id} />
+          <div
+            className={
+              `form-group
+              ${ type1_id.touched &&
+                 type1_id.invalid ? 'has-error' : '' }`}>
+             <select
+                className='form-control'
+                name='type1_id'
+                value={this.props.pokedex.type1_id}
+                {...type1_id}>
+                <option key='0' value='0'>-- Please pick a type --</option>
+                {
+                  this.props.types.map((type) => {
+                    return(
+                      <option key={type.id} value={type.id}>{type.type}</option>
+                    );
+                  })
+                }
+              </select>
+            <div className='help-block'>
+              { type1_id.touched ? type1_id.error : '' }
+            </div>
           </div>
-          <div className='form-group'>
-            <input
-              pokedex='text'
-              className='form-control'
-              placeholder='Type'
-              value={this.props.pokedex.type2_id}
-              {...type2_id} />
+          <div
+            className='form-group'>
+             <select
+                className='form-control'
+                name='type2_id'
+                value={ this.props.pokedex.type2_id }
+                {...type2_id}>
+                <option key='0' value='0'>-- Please pick a type --</option>
+                {
+                  this.props.types.map((type) => {
+                    return(
+                      <option key={type.id} value={type.id}>{type.type}</option>
+                    );
+                  })
+                }
+              </select>
           </div>
           <div className='form-group'>
             <input
@@ -89,7 +124,7 @@ function validate(values) {
   const errors = {};
 
   if (!values.national_id) {
-    errors.reference = 'Enter a national ID';
+    errors.national_id = 'Enter a national ID';
   }
 
   if (!values.name) {
@@ -108,11 +143,11 @@ function validate(values) {
 }
 
 function mapStateToProps(state) {
-  return { pokedex: state.pokedexes.pokedex };
+  return { pokedex: state.pokedexes.pokedex, types: state.types.all };
 }
 
 export default reduxForm({
   form: 'PokedexesEditForm',
-  fields: ['reference', 'pokedex'],
+  fields: ['national_id', 'name', 'type1_id', 'type2_id', 'status'],
   validate
-}, mapStateToProps, { showPokedex, updatePokedex })(PokedexesEdit);
+}, mapStateToProps, { fetchTypes, showPokedex, updatePokedex })(PokedexesEdit);
