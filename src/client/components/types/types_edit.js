@@ -25,14 +25,12 @@ class TypesEdit extends Component {
     return (
       <div>
         <div className='page-header'>
-          <h2>
-            Edit Type
-            <nav className='pull-right'>
-              <Link to='/types' className='btn btn-link'>
-                Back to Types
-              </Link>
-            </nav>
-          </h2>
+          <h2>Edit Type</h2>
+          <nav className='pull-right'>
+            <Link to='/types' className='btn btn-link'>
+              Back to Types
+            </Link>
+          </nav>
         </div>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <div className='form-group'>
@@ -61,26 +59,11 @@ class TypesEdit extends Component {
   }
 }
 
-function validate(values) {
-  const errors = {};
-
-  if (!values.reference) {
-    errors.reference = 'Enter a reference';
-  }
-
-  if (!values.type) {
-    errors.type = 'Enter a type';
-  }
-
-  return errors;
-}
-
 function mapStateToProps(state) {
   return { type: state.types.type };
 }
 
 export default reduxForm({
   form: 'TypesEditForm',
-  fields: ['reference', 'type'],
-  validate
+  fields: ['reference', 'type']
 }, mapStateToProps, { showType, updateType })(TypesEdit);

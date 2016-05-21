@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchTypes } from '../actions/types';
+import { queryType } from '../actions/types';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class SearchBar extends Component {
   onFormSubmit(event) {
     event.preventDefault();
 
-    this.props.fetchTypes(this.state.term);
+    this.props.queryType(this.state.term);
     this.setState({ term: '' });
   }
 
@@ -40,7 +40,7 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchTypes }, dispatch);
+  return bindActionCreators({ queryType }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);

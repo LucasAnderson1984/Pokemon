@@ -8,6 +8,7 @@ export const SHOW_TYPE = 'SHOW_TYPE';
 export const CREATE_TYPE = 'CREATE_TYPE';
 export const UPDATE_TYPE = 'UPDATE_TYPE';
 export const DESTROY_TYPE = 'DESTROY_TYPE';
+export const QUERY_TYPE = 'QUERY_TYPE';
 
 export function fetchTypes() {
   const request = axios.get(url);
@@ -50,6 +51,15 @@ export function destroyType(id) {
 
   return {
     type: DESTROY_TYPE,
+    payload: request
+  };
+}
+
+export function queryType(id) {
+  const request = axios.get(`${url}/${id}`);
+
+  return {
+    type: QUERY_TYPE,
     payload: request
   };
 }

@@ -28,7 +28,7 @@ exports.create = function(req, res, next) {
 
   models.Type
     .create(TypeParams)
-    .then(function(type) { res.redirect('/types'); })
+    .then(function(type) { res.json({ success: true }); })
     .catch(function(error) { next(error) });
 };
 
@@ -43,13 +43,13 @@ exports.update = function(req, res, next) {
 
   models.Type
     .update(TypeParams, { where: { id: req.params.id } })
-    .then(function(type) { res.redirect('/types'); })
+    .then(function(type) { res.json({ success: true }); })
     .catch(function(error) { next(error) });
 };
 
 exports.destroy = function(req, res, next) {
   models.Type
     .destroy({ where: { id: req.params.id } })
-    .then(function(type) { res.redirect('/types'); })
+    .then(function(type) { res.json({ success: true }); })
     .catch(function(error) { next(error) });
 };

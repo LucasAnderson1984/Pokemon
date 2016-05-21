@@ -6,6 +6,10 @@ table { margin-top: 10px; }
   border-radius: 4px 0 0 4px;
 }
 
+.page-header, #home-page { margin-top: 70px; }
+
+.page-header nav { margin-top: -36px; }
+
 form a { margin-left: 10px; }
 
 td nav { text-align: right; }
@@ -13,3 +17,5 @@ td nav { text-align: right; }
 td nav a { margin-left: 5px; }
 
 td nav button { margin-left: 5px; }
+
+#logout { margin-right: 20px; }

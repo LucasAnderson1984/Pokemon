@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchTypes, destroyType } from '../actions/types';
+import { fetchTypes, destroyType, queryType } from '../actions/types';
 import { Link } from 'react-router';
+import SearchBar from './search_bar';
 
 class TypeList extends Component {
   static contextTypes = {
@@ -46,15 +47,15 @@ class TypeList extends Component {
     return (
       <div>
         <div className='page-header'>
-          <h2>
-            Types
-            <nav className='pull-right'>
-              <Link to='/types/new' className='btn btn-link'>
-                New Type
-              </Link>
-            </nav>
-          </h2>
+          <h2>Types</h2>
+          <p></p>
+          <nav className='pull-right'>
+            <Link to='/types/new' className='btn btn-link'>
+              New Type
+            </Link>
+          </nav>
         </div>
+        <SearchBar />
         <table className="table table-striped">
           <thead>
             <tr>
@@ -72,6 +73,7 @@ class TypeList extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return { types: state.types.all };
 }
 

@@ -35,14 +35,12 @@ class PokedexesNew extends Component {
     return (
       <div>
         <div className='page-header'>
-          <h2>
-            New Pokedex
-            <nav className='pull-right'>
-              <Link to='/pokedexes' className='btn btn-link'>
-                Back to Pokedexes
-              </Link>
-            </nav>
-          </h2>
+          <h2>New Pokemon</h2>
+          <nav className='pull-right'>
+            <Link to='/pokedexes' className='btn btn-link'>
+              Back to Pokedex
+            </Link>
+          </nav>
         </div>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <div
@@ -117,7 +115,7 @@ class PokedexesNew extends Component {
           </div>
 
           <button pokedex='submit' className='btn btn-primary'>
-            Create Pokedex
+            Create Pokemon
           </button>
         </form>
       </div>

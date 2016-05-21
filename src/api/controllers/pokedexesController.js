@@ -57,7 +57,7 @@ exports.create = function(req, res, next) {
 
   models.Pokedex
     .create(PokedexParams)
-    .then(function(pokedex) { res.redirect('/pokedexes'); })
+    .then(function(pokedex) { res.json({ success: true }); })
     .catch(function(error) { next(error) });
 };
 
@@ -75,14 +75,13 @@ exports.update = function(req, res, next) {
 
   models.Pokedex
     .update(PokedexParams, { where: { id: req.params.id } })
-    .then(function(pokedex) { res.redirect('/pokedexes'); })
+    .then(function(pokedex) { res.json({ success: true }); })
     .catch(function(error) { next(error) });
 };
 
 exports.destroy = function(req, res, next) {
   models.Pokedex
     .destroy({ where: { id: req.params.id } })
-    .then(function(pokedex) { res.redirect('/pokedexes')
+    .then(function(pokedex) { res.json({ success: true }); })
     .catch(function(error) { next(error) });
-  });
 };

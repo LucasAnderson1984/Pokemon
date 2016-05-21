@@ -14,17 +14,15 @@ class TypesShow extends Component {
     return (
       <div>
         <div className='page-header'>
-          <h2>
-            {this.props.type.type}
-            <nav className='pull-right'>
-              <Link to={edit} className='btn btn-link'>
-                Edit
-              </Link>
-              <Link to='/types' className='btn btn-link'>
-                Back to Types
-              </Link>
-            </nav>
-          </h2>
+          <h2>{this.props.type.type}</h2>
+          <nav className='pull-right'>
+            <Link to={edit} className='btn btn-link'>
+              Edit
+            </Link>
+            <Link to='/types' className='btn btn-link'>
+              Back to Types
+            </Link>
+          </nav>
         </div>
         <div className='form form-horizontal'>
           <div className='form-group'>

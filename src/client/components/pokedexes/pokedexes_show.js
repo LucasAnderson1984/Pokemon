@@ -19,17 +19,15 @@ class PokedexesShow extends Component {
     return (
       <div>
         <div className='page-header'>
-          <h2>
-            {this.props.pokedex.name}
-            <nav className='pull-right'>
-              <Link to={edit} className='btn btn-link'>
-                Edit
-              </Link>
-              <Link to='/pokedexes' className='btn btn-link'>
-                Back to Pokedexes
-              </Link>
-            </nav>
-          </h2>
+          <h2>{this.props.pokedex.name}</h2>
+          <nav className='pull-right'>
+            <Link to={edit} className='btn btn-link'>
+              Edit
+            </Link>
+            <Link to='/pokedexes' className='btn btn-link'>
+              Back to Pokedex
+            </Link>
+          </nav>
         </div>
         <div className='form form-horizontal'>
           <div className='form-group'>

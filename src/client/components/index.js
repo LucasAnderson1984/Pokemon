@@ -4,8 +4,8 @@ import React from 'react';
 
 export default() => {
   return (
-    <div>
-      <h1>Pokedex</h1>
+    <div id='home-page'>
+      <h2>Pokemon</h2>
       <div>Gotta catch em&#39; all</div>
     </div>
   );

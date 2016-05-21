@@ -21,14 +21,12 @@ class TypesNew extends Component {
     return (
       <div>
         <div className='page-header'>
-          <h2>
-            New Type
-            <nav className='pull-right'>
-              <Link to='/types' className='btn btn-link'>
-                Back to Types
-              </Link>
-            </nav>
-          </h2>
+          <h2>New Type</h2>
+          <nav className='pull-right'>
+            <Link to='/types' className='btn btn-link'>
+              Back to Types
+            </Link>
+          </nav>
         </div>
         <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
           <div
