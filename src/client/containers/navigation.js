@@ -27,7 +27,7 @@ export default class Navigation extends Component {
               <li><Link to='/types'>Types</Link></li>
               <li id='logout'>
                 <Link to='/'>
-                  Lucas Anderson&nbsp;
+                  Lucas Anderson&nbsp;&nbsp;
                   <label className='glyphicon glyphicon-log-out' />
                 </Link>
               </li>

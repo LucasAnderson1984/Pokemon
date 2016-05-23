@@ -5,12 +5,10 @@ const INITIAL_STATE = { all: [], type: 0 };
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_TYPE:
-      console.log(action.payload.data);
       return { ...state, all: action.payload.data };
     case SHOW_TYPE:
       return { ...state, type: action.payload.data };
     case QUERY_TYPE:
-    consoled
       if (action.payload.data.id)
         return { ...state, all: [action.payload.data] };
       else

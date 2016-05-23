@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchTypes, destroyType, queryType } from '../actions/types';
 import { Link } from 'react-router';
-import SearchBar from './search_bar';
+import TypeSearchBar from './type_search_bar';
 
 class TypeList extends Component {
   static contextTypes = {
@@ -55,7 +55,7 @@ class TypeList extends Component {
             </Link>
           </nav>
         </div>
-        <SearchBar />
+        <TypeSearchBar />
         <table className="table table-striped">
           <thead>
             <tr>
@@ -73,7 +73,6 @@ class TypeList extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return { types: state.types.all };
 }
 

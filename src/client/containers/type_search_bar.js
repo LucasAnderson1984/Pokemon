@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { queryType } from '../actions/types';
 
-class SearchBar extends Component {
+class TypeSearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = { term: '' };
@@ -43,4 +43,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ queryType }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(null, mapDispatchToProps)(TypeSearchBar);

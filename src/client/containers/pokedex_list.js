@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPokedexes, destroyPokedex } from '../actions/pokedexes';
 import { Link } from 'react-router';
-import SearchBar from './search_bar';
+import PokedexSearchBar from './pokedex_search_bar';
 
 class PokedexList extends Component {
   static contextTypes = {
@@ -59,7 +59,7 @@ class PokedexList extends Component {
             </Link>
           </nav>
         </div>
-        <SearchBar />
+        <PokedexSearchBar />
         <table className="table table-striped">
           <thead>
             <tr>

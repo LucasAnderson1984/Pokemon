@@ -55,8 +55,8 @@ export function destroyType(id) {
   };
 }
 
-export function queryType(id) {
-  const request = axios.get(`${url}/${id}`);
+export function queryType(param) {
+  const request = axios.get(`${url}?param=${param}`);
 
   return {
     type: QUERY_TYPE,
