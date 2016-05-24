@@ -83,7 +83,7 @@ class PokedexesEdit extends Component {
                 name='type2_id'
                 value={ this.props.pokedex.type2_id }
                 {...type2_id}>
-                <option key='0' value='0'>-- Please pick a type --</option>
+                <option key='0' value='0'>None</option>
                 {
                   this.props.types.map((type) => {
                     return(
@@ -93,13 +93,16 @@ class PokedexesEdit extends Component {
                 }
               </select>
           </div>
-          <div className='form-group'>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Status'
-              value={this.props.pokedex.status}
-              {...status} />
+          <div
+            className='form-group'>
+             <select
+                className='form-control'
+                name='status'
+                value={ this.props.pokedex.status }
+                {...status}>
+                <option key='Not Caught' value='Not Caught'>Not Caught</option>
+                <option key='Caught' value='Caught'>Caught</option>
+              </select>
           </div>
 
           <button type='submit' className='btn btn-primary'>

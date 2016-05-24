@@ -77,7 +77,7 @@ class PokedexesNew extends Component {
               ${ type1_id.touched &&
                  type1_id.invalid ? 'has-error' : '' }`}>
              <select className='form-control' name='type1_id' {...type1_id}>
-                <option key='0' value='0'>-- Please pick a type --</option>
+                <option key='0' value='0'>-- Please pick first type --</option>
                 {
                   this.props.types.map((type) => {
                     return(<option key={type.id} value={type.id}>{type.type}</option>);
@@ -91,7 +91,7 @@ class PokedexesNew extends Component {
           <div
             className='form-group'>
              <select className='form-control' name='type2_id' {...type2_id}>
-                <option key='0' value='0'>-- Please pick a type --</option>
+                <option key='0' value='0'>-- Please pick second type --</option>
                 {
                   this.props.types.map((type) => {
                     return(<option key={type.id} value={type.id}>{type.type}</option>);
@@ -104,11 +104,14 @@ class PokedexesNew extends Component {
               `form-group
               ${ status.touched &&
                  status.invalid ? 'has-error' : '' }`}>
-            <input
-              type='text'
-              className='form-control'
-              placeholder='Status'
-              {...status} />
+            <select
+               className='form-control'
+               name='status'
+               {...status}>
+               <option key='0' value='0'>-- Please pick a status --</option>
+               <option key='Not Caught' value='Not Caught'>Not Caught</option>
+               <option key='Caught' value='Caught'>Caught</option>
+             </select>
             <div className='help-block'>
               { status.touched ? status.error : '' }
             </div>

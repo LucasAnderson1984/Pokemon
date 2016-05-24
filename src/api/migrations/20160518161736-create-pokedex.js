@@ -29,10 +29,11 @@ module.exports = {
       },
       type2_id: {
         foreignKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       status: {
-        type: Sequelize.STRING
+        type:   Sequelize.STRING,
       },
       created_by: {
         allowNull: false,

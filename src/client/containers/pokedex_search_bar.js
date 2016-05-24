@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { queryType } from '../actions/types';
+import { queryPokedex } from '../actions/pokedexes';
 
 class PokedexSearchBar extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class PokedexSearchBar extends Component {
   onFormSubmit(event) {
     event.preventDefault();
 
-    this.props.queryType(this.state.term);
+    this.props.queryPokedex(this.state.term);
     this.setState({ term: '' });
   }
 
@@ -27,7 +27,7 @@ class PokedexSearchBar extends Component {
     return (
       <form id='searchBar' onSubmit={this.onFormSubmit} className="input-group">
         <input
-          placeholder="Get types list"
+          placeholder="Get pokedex list"
           className="form-control"
           value={this.state.term}
           onChange={this.onInputChange} />
@@ -40,7 +40,7 @@ class PokedexSearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ queryType }, dispatch);
+  return bindActionCreators({ queryPokedex }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(PokedexSearchBar);

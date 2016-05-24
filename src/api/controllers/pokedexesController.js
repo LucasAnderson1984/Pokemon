@@ -1,6 +1,7 @@
 import { models } from '~/src/api/models';
 
 exports.index = function(req, res, next) {
+  var param = req.query.param == null ? '' : req.query.param;
   models.Pokedex
     .findAll({
       attributes: ['id',
@@ -14,7 +15,19 @@ exports.index = function(req, res, next) {
                    'created_at',
                    'updated_by',
                    'updated_at'],
-       include: [{ all: true }],
+       include: [
+         { model: models.Type, as: 'type1', attributes: ['type']},
+         { model: models.Type, as: 'type2', attributes: ['type']}
+       ],
+       where: {
+         $or: [
+           { national_id: parseInt(`${param}`) || 0 },
+           { name: { like: `%${param}%` }},
+           { status: `${param}`},
+           { '$type1.type$': { like: `%${param}%` }},
+           { '$type2.type$': { like: `%${param}%` }}
+         ]
+       },
        order: ['id'] })
     .then(function(pokedexes) { res.json(pokedexes); })
     .catch(function(error) { next(error); });

@@ -8,6 +8,7 @@ export const SHOW_POKEDEX = 'SHOW_POKEDEX';
 export const CREATE_POKEDEX = 'CREATE_POKEDEX';
 export const UPDATE_POKEDEX = 'UPDATE_POKEDEX';
 export const DESTROY_POKEDEX = 'DESTROY_POKEDEX';
+export const QUERY_POKEDEX = 'QUERY_POKEDEX';
 
 export function fetchPokedexes() {
   const request = axios.get(url);
@@ -50,6 +51,15 @@ export function destroyPokedex(id) {
 
   return {
     type: DESTROY_POKEDEX,
+    payload: request
+  };
+}
+
+export function queryPokedex(param) {
+  const request = axios.get(`${url}?param=${param}`);
+
+  return {
+    type: QUERY_POKEDEX,
     payload: request
   };
 }

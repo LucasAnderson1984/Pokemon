@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPokedexes, destroyPokedex } from '../actions/pokedexes';
+import { fetchPokedexes, destroyPokedex, queryPokedex } from '../actions/pokedexes';
 import { Link } from 'react-router';
 import PokedexSearchBar from './pokedex_search_bar';
 

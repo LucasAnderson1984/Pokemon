@@ -1,9 +1,9 @@
 import { models } from '~/src/api/models';
 
 exports.index = function(req, res, next) {
-  var param = req.query.param == null ? "%%" : req.query.param;
+  var param = req.query.param == null ? '' : req.query.param;
   models.Type
-    .findAll({ where: { type: { like: param }}, order: ['id'] })
+    .findAll({ where: { type: { like: `%${param}%` }}, order: ['id'] })
     .then(function(types) { res.json(types); })
     .catch(function(error) { next(error); });
 };
