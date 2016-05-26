@@ -17,7 +17,7 @@ class PokedexList extends Component {
     if (confirm('Are you sure?'))
       this.props.destroyPokedex(button.target.id)
         .then(() => {
-          this.context.router.push('/pokedexes');
+          this.props.fetchPokedexes();
         });
   }
 

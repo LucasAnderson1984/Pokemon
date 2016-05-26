@@ -17,7 +17,7 @@ class TypeList extends Component {
     if (confirm('Are you sure?'))
       this.props.destroyType(button.target.id)
         .then(() => {
-          this.context.router.push('/types');
+          this.props.fetchTypes();
         });
   }
 
