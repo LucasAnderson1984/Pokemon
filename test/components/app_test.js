@@ -7,8 +7,10 @@ describe('App', () => {
   //   expect(component).to.have.class('container');
   // }),
 
-  it('has a container', () => {
+  it('has a menu items', () => {
     const component = renderComponent(App);
-    expect(component).to.have.class('container');
+    expect(component).to.contain('Pokedex');
+    expect(component).to.contain('Types');
+    expect(component).to.contain('Pokemon');
   });
 });
