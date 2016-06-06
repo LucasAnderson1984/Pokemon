@@ -9,16 +9,9 @@ import { createStore } from 'redux';
 import reducers from '../src/client/reducers';
 import chaiJquery from 'chai-jquery';
 
-// setup the simplest document possible
-var doc = jsdom.jsdom('<!doctype html><html><body></body></html>')
-
-// get the window object out of the document
-var win = doc.defaultView
-
-// set globals for mocha that make access to document and window feel
-// natural in the test environment
-global.document = doc
-global.window = win
+// Set up testing environment to run like a browser in the command line
+global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
+global.window = global.document.defaultView;
 const $ = jquery(global.window);
 
 // build 'renderComponent' helper that should render a given react class
@@ -40,7 +33,7 @@ $.fn.simulate = function(eventName, value) {
   TestUtils.Simulate[eventName](this[0]);
 }
 
-propagateToGlobal(win)
+propagateToGlobal(global.window);
 
 // from mocha-jsdom https://github.com/rstacruz/mocha-jsdom/blob/master/index.js#L80
 function propagateToGlobal (window) {

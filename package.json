@@ -7,7 +7,7 @@
     "dev": "gulp",
     "start": "node build/api/server.js",
     "build": "gulp clean && gulp buildProd",
-    "test": "mocha --compilers js:babel-core/register test/**/*.js  -r mock-local-storage -r isomorphic-fetch",
+    "test": "mocha --compilers js:babel-core/register -r ./test/test_helper.js test/**/*.js",
     "test:watch": "npm run test -- --watch",
     "cover": "babel-node node_modules/isparta/bin/isparta cover --include '**/*.js' node_modules/mocha/bin/_mocha --  --recursive -r mock-local-storage -r isomorphic-fetch"
   },
